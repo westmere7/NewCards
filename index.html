@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Designer Portfolio</title>
+    <style>
+        /* Reset default margins and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styling for full height and background */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Container stretches across full width */
+        .container {
+            display: flex;
+            justify-content: space-between; /* Distributes cards evenly across width */
+            width: 100%; /* Full width of viewport */
+            padding: 20px; /* Small padding on the sides */
+            gap: 15px; /* Consistent gap between cards */
+        }
+
+        /* Card styling with flexible width */
+        .card {
+            position: relative;
+            flex: 1; /* Cards grow equally to fill available space by default */
+            height: 900px; /* Increased height for larger cards */
+            border-radius: 30px;
+            overflow: hidden;
+            text-decoration: none;
+            transition: all 0.4s ease; /* Smooth transition for flex and brightness changes */
+        }
+
+        /* Gradient overlay using ::before */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+background: linear-gradient(to bottom, rgba(16, 15, 28, 1) 20%, rgba(16, 15, 28, .9) 60%, rgba(16, 15, 28, 0) 100%);
+            z-index: 1; /* Above the video but below the text layer */
+        }
+
+        /* Video inside card */
+        .card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures video fills card without distortion */
+            transition: all 0.3s ease; /* Smooth transition for brightness */
+            z-index: 0; /* Below the gradient overlay */
+        }
+
+        /* Text layer on top of the video and gradient */
+        .text-layer {
+            position: absolute;
+            top: 7%; /* Near the top of the card */
+            left: 50%; /* Center horizontally */
+            transform: translateX(-50%); /* Center alignment */
+            width: 75%; /* 75% of the card's width */
+            height: auto; /* Maintain aspect ratio */
+            transition: all 0.5s ease; /* Slower transition for width and clip-path changes */
+            clip-path: inset(0 0 43% 0); /* Show only the top 30% by default */
+            z-index: 2; /* Above the gradient overlay */
+        }
+
+        /* Feathered edge for the mask using ::after */
+        .text-layer::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%; /* Increased height for more feathering */
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                rgba(240, 240, 240, 0.3) 50%, /* Softer midpoint for more gradual fade */
+                rgba(240, 240, 240, 0.9) 100% /* Match the background color for a seamless fade */
+            );
+            transition: opacity 0.5s ease; /* Slower transition for feathering */
+            opacity: 1; /* Visible by default */
+        }
+
+        /* Dim all cards when the container is hovered */
+        .container:hover .card {
+            flex: 0.8; /* Shrink all cards slightly when any card is hovered */
+            filter: brightness(0.6); /* Dim all cards by 30% */
+        }
+
+        /* Override for the hovered card: Brighten and grow */
+        .container:hover .card:hover {
+            flex: 1.5; /* Grow the hovered card */
+            filter: none; /* Remove dimming for the hovered card */
+        }
+
+        /* Brighten the video of the hovered card */
+        .card:hover video {
+            filter: brightness(1); /* Increase brightness by 30% on hover */
+        }
+
+        /* Grow the text layer on hover and remove the mask */
+        .card:hover .text-layer {
+            width: 78.75%; /* 75% * 1.05 = 78.75%, matching the card's growth */
+            transform: translateX(-50%); /* Maintain centering */
+            clip-path: inset(0 0 0 0); /* Show the full text layer on hover */
+        }
+
+        /* Hide the feathered edge on hover */
+        .card:hover .text-layer::after {
+            opacity: 0; /* Hide the feathered edge when unmasked */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="card">
+            <video muted loop>
+                <source src="res/card_1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="res/text/text_1.svg" alt="Text Layer" class="text-layer">
+        </a>
+        <a href="#" class="card">
+            <video muted loop>
+                <source src="res/card_2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="res/text/text_2.svg" alt="Text Layer" class="text-layer">
+        </a>
+        <a href="#" class="card">
+            <video muted loop>
+                <source src="res/card_3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="res/text/text_3.svg" alt="Text Layer" class="text-layer">
+        </a>
+        <a href="#" class="card">
+            <video muted loop>
+                <source src="res/card_4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="res/text/text_4.svg" alt="Text Layer" class="text-layer">
+        </a>
+        <a href="#" class="card">
+            <video muted loop>
+                <source src="res/card_5.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <img src="res/text/text_5.svg" alt="Text Layer" class="text-layer">
+        </a>
+    </div>
+
+    <script>
+        // Get all video elements
+        const videos = document.querySelectorAll('.card video');
+
+        // Add event listeners for each video
+        videos.forEach(video => {
+            // On hover, play the video
+            video.parentElement.addEventListener('mouseenter', () => {
+                video.play();
+            });
+
+            // On hover out, pause and reset the video to the first frame
+            video.parentElement.addEventListener('mouseleave', () => {
+                video.pause();
+                video.currentTime = 0; // Reset to the first frame
+            });
+        });
+    </script>
+</body>
+</html>
