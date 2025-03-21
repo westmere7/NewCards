@@ -36,7 +36,7 @@
             position: relative;
             flex: 1; /* Cards grow equally to fill available space by default */
             height: 900px; /* Increased height for larger cards */
-            border-radius: 30px;
+            border-radius: 0 0 25px 25px;
             overflow: hidden;
             text-decoration: none;
             transition: all 0.4s ease; /* Smooth transition for flex and brightness changes */
@@ -97,7 +97,7 @@ background: linear-gradient(to bottom, rgba(16, 15, 28, 1) 20%, rgba(16, 15, 28,
         /* Dim all cards when the container is hovered */
         .container:hover .card {
             flex: 0.8; /* Shrink all cards slightly when any card is hovered */
-            filter: brightness(0.6); /* Dim all cards by 30% */
+            filter: brightness(.8); /* Dim all cards by 30% */
         }
 
         /* Override for the hovered card: Brighten and grow */
@@ -108,7 +108,7 @@ background: linear-gradient(to bottom, rgba(16, 15, 28, 1) 20%, rgba(16, 15, 28,
 
         /* Brighten the video of the hovered card */
         .card:hover video {
-            filter: brightness(1); /* Increase brightness by 30% on hover */
+            filter: brightness(1.2); /* Increase brightness by 30% on hover */
         }
 
         /* Grow the text layer on hover and remove the mask */
