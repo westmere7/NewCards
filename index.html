@@ -16,9 +16,9 @@
         body {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Align to the top instead of center */
             min-height: 100vh;
-            background-color: #100f1c; /* Light gray background */
+            background-color: #100f1c; /* Dark background */
             font-family: Arial, sans-serif;
         }
 
@@ -27,7 +27,7 @@
             display: flex;
             justify-content: space-between; /* Distributes cards evenly across width */
             width: 100%; /* Full width of viewport */
-            padding: 20px; /* Small padding on the sides */
+            padding: 0 20px 20px 20px; /* Remove top padding, keep others */
             gap: 15px; /* Consistent gap between cards */
         }
 
@@ -50,7 +50,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-background: linear-gradient(to bottom, rgba(16, 15, 28, 1) 20%, rgba(16, 15, 28, .9) 60%, rgba(16, 15, 28, 0) 100%);
+            background: linear-gradient(to bottom, rgba(16, 15, 28, 1) 20%, rgba(16, 15, 28, .9) 60%, rgba(16, 15, 28, 0) 100%);
             z-index: 1; /* Above the video but below the text layer */
         }
 
@@ -125,7 +125,7 @@ background: linear-gradient(to bottom, rgba(16, 15, 28, 1) 20%, rgba(16, 15, 28,
     </style>
 </head>
 <body>
-<div class="container">
+    <div class="container">
         <a href="https://danh.world/concepts-designs" target="_blank" rel="noopener noreferrer" class="card">
             <video muted loop>
                 <source src="res/card_1.mp4" type="video/mp4">
